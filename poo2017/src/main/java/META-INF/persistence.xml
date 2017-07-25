@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	
+	<persistence-unit name="remote" transaction-type="RESOURCE_LOCAL">
+		<class>model.Admin</class>
+		<class>model.Gallery</class>
+		<class>model.Item</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver"   value="com.mysql.jdbc.GoogleDriver" />
+			<property name="javax.persistence.jdbc.url"      value="jdbc:google:mysql://poo-evalfinal3-luis:europe-west1:luispoo2017/testjpa" />
+			<property name="javax.persistence.jdbc.user"     value="root"/>
+						   <!-- EclipseLink should create the database schema automatically -->
+			  <property name="eclipselink.ddl-generation" value="create-tables" />
+			  <property name="eclipselink.ddl-generation.output-mode" value="database" />
+		</properties>
+	</persistence-unit>
+	
+	
+	<persistence-unit name="local" transaction-type="RESOURCE_LOCAL">
+		<class>model.Admin</class>
+		<class>model.Gallery</class>
+		<class>model.Item</class>
+		
+		<properties>
+			  <property name="javax.persistence.jdbc.driver"   value="com.mysql.jdbc.Driver" />
+			  <property name="javax.persistence.jdbc.url"      value="jdbc:mysql://localhost/testjpa" />
+			  <property name="javax.persistence.jdbc.user"     value="root" />
+			  <property name="javax.persistence.jdbc.password" value="poodb" />
+			   <!-- EclipseLink should create the database schema automatically -->
+			  <property name="eclipselink.ddl-generation" value="create-tables" />
+			  <property name="eclipselink.ddl-generation.output-mode" value="database" />
+		</properties>
+	</persistence-unit>	  
+	
+</persistence>

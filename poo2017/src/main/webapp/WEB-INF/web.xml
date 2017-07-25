@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+  <servlet>
+    <servlet-name>CreateAdmin</servlet-name>
+    <servlet-class>poo.evalfinal3.luis.CreateAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateAdmin</servlet-name>
+    <url-pattern>/createadmin</url-pattern>
+  </servlet-mapping>
+  
+<servlet>
+  <servlet-name>RemoveAdmin</servlet-name>
+  <servlet-class>poo.evalfinal3.luis.RemoveAdmin</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>RemoveAdmin</servlet-name>
+  <url-pattern>/removeadmin</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>GetAllAdmin</servlet-name>
+	<servlet-class>poo.evalfinal3.luis.GetAllAdmin</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>GetAllAdmin</servlet-name>
+	<url-pattern>/getalladmin</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>UpdateAdmin</servlet-name>
+	<servlet-class>poo.evalfinal3.luis.UpdateAdmin</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>UpdateAdmin</servlet-name>
+	<url-pattern>/updateadmin</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>GetGalleries</servlet-name>
+	<servlet-class>poo.evalfinal3.luis.GetGalleries</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>GetGalleries</servlet-name>
+	<url-pattern>/getgalleries</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>CreateGallery</servlet-name>
+	<servlet-class>poo.evalfinal3.luis.CreateGallery</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>CreateGallery</servlet-name>
+	<url-pattern>/creategallery</url-pattern>
+</servlet-mapping>
+ 
+<servlet>
+	<servlet-name>RemoveGallery</servlet-name>
+	<servlet-class>poo.evalfinal3.luis.RemoveGallery</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>RemoveGallery</servlet-name>
+	<url-pattern>/removegallery</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>UpdateGallery</servlet-name>
+	<servlet-class>poo.evalfinal3.luis.UpdateGallery</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>UpdateGallery</servlet-name>
+	<url-pattern>/updategallery</url-pattern>
+</servlet-mapping>
+ 
+	<servlet>
+		<servlet-name>GetItems</servlet-name>
+		<servlet-class>poo.evalfinal3.luis.GetItems</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetItems</servlet-name>
+		<url-pattern>/getitems</url-pattern>
+	</servlet-mapping>
+
+<welcome-file-list>
+	<welcome-file>index.html</welcome-file>
+</welcome-file-list>
+
+</web-app>
