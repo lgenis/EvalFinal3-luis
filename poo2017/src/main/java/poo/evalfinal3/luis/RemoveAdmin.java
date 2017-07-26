@@ -17,6 +17,7 @@
 package poo.evalfinal3.luis;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -28,12 +29,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DBAdmin;
 import dao.DBManager;
+import data.StringHelper;
 import model.Admin;
 
 public class RemoveAdmin extends HttpServlet{
 	
 	@Override
-	  public void doGet(HttpServletRequest request, HttpServletResponse response) 
+	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 		      throws IOException {
       
 	  DBAdmin dbAdmin = new DBAdmin();
@@ -57,41 +59,46 @@ public class RemoveAdmin extends HttpServlet{
   }
 	
 	
-/*
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-		DBAdmin dbAdmin = new DBAdmin();
+		response.setContentType("text/html");
+	      PrintWriter out = response.getWriter();
 		
-	      String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
+		DBAdmin dbAdmin = new DBAdmin();
+		 DBManager db = new DBManager();
 	      
+	      Boolean pass=true;
 	      
+	      Admin mockAdm =new Admin();
 	      
 	      String strFirstNum = req.getParameter("adminId");
-	      //String strSecondNum = req.getParameter("second_number");
-	      //String operation = req.getParameter("option");
+	      
+	      if (StringHelper.isNumber(strFirstNum)){
+		      db.connect();
+			  		mockAdm =  db.find(Admin.class, Integer.valueOf(strFirstNum));
+			  db.close();
+			  if (mockAdm!=null){
+				  dbAdmin.removeAdmin(mockAdm);
+			  }else{
+				  pass=false;
+			  }
+			  
+			  
+	      }else {
+	    	  pass=false;
+	      }
+	      
+	   
 	
 	      
-	      if(true){	
-		      out.println(docType +
-				         "<html>\n" +
-				            "<head><title>" + title + "</title></head>\n" +
-				            "<body bgcolor = \"#f0f0f0\">\n" +
-				 
-				               "<h1 align = \"center\"> La " + operation + " es: " + sum  + "</h1>\n" +
-				               "<h2 align = \"center\">" + date.toString() + "</h2>\n" +
-				            "</body> </html>"
-				      );
+	      if(pass && mockAdm.getId()!=0){	
+	    	  out.println(StringHelper.outHtml("Eliminar Admin!" , "Eliminar", mockAdm.getName(), mockAdm.getId()));
 				
 	      }else{
-			out.println(docType +
-			         "<html>\n" +
-			            "<head><title>" + title + "</title></head>\n" +
-			            "<body bgcolor = \"#f0f0f0\">\n" +
-			 
-			               "<h1 align = \"center\"> No se puede hacer operacion </h1>\n" +
-			               "<h2 align = \"center\">" + date.toString() + "</h2>\n" +
-			            "</body> </html>"
-			      );
+			
+	    	  out.println(StringHelper.outHtml("Eliminar Admin!" , "Eliminar", null, 0));
 			}
-	}*/
+	      
+	}
 }

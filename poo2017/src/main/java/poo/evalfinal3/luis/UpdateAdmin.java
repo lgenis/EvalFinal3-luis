@@ -17,16 +17,19 @@
 package poo.evalfinal3.luis;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DBAdmin;
 import dao.DBManager;
+import data.StringHelper;
 import model.Admin;
 
 public class UpdateAdmin extends HttpServlet {
@@ -54,4 +57,48 @@ public class UpdateAdmin extends HttpServlet {
     response.getWriter().println("Admin updated ID: " + mockAdm.getId());
     response.getWriter().println("Admin updated name: " + mockAdm.getName());
   }
+  
+  @Override
+ 	protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+ 		response.setContentType("text/html");
+ 	      PrintWriter out = response.getWriter();
+ 		
+ 		DBAdmin dbAdmin = new DBAdmin();
+ 		 DBManager db = new DBManager();
+ 	      
+ 	      Boolean pass=true;
+ 	      
+ 	      Admin mockAdm =new Admin();
+ 	      
+ 	      String strFirstNum = req.getParameter("adminId");
+ 	      String strSecondNum=req.getParameter("adminName");
+ 	      
+ 	      if (StringHelper.isNumber(strFirstNum) && !strSecondNum.equals("")){
+		      db.connect();
+			  		mockAdm =  db.find(Admin.class, Integer.valueOf(strFirstNum));
+			  db.close();
+			  if (mockAdm!=null){
+	 		      mockAdm.setName(strSecondNum);
+	 			  dbAdmin.updateAdmin(mockAdm);
+			  }else{
+				  pass=false;
+			  }
+ 	      }else {
+ 	    	  pass=false;
+ 	      }
+ 	      
+ 	   
+ 	
+ 	      
+ 	      if(pass && mockAdm.getId()!=0){	
+ 	    	  out.println(StringHelper.outHtml("Crear Admin!" , "Crear", mockAdm.getName(), mockAdm.getId()));
+ 				
+ 	      }else{
+ 			
+ 	    	  out.println(StringHelper.outHtml("Crear Admin!" , "Crear", null, 0));
+ 			}
+ 	      
+ 	}
+   
+  
 }

@@ -18,7 +18,7 @@ import model.Admin;
  */
 public class DBManager { 
 	
-	private static final String PERSISTENCE_UNIT_NAME = "remote"; 
+	private static final String PERSISTENCE_UNIT_NAME = "local"; 
 	private static EntityManagerFactory factory=null;
 	
 	EntityManager entitymanager; 
